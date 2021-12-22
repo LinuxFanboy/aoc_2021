@@ -1,3 +1,4 @@
+// Part1
 const fs = require("fs");
 
 let commandList = [];
@@ -23,5 +24,26 @@ commandList.forEach(cmd => {
     }
 });
 
+console.log(``);
 console.log(`final submarine position: ${pos.horizontal}, ${pos.depth}`);
-console.log(`puzzle solution: ${(pos.horizontal * pos.depth)}`);
+console.log(`puzzle 1 solution: ${(pos.horizontal * pos.depth)}`);
+
+// Part2
+
+let sub = {aim: 0, horizontal: 0, depth: 0};
+commandList.forEach(cmd => {
+    if (cmd.dir == "forward") {
+        sub.horizontal += cmd.val;
+        sub.depth += cmd.val * sub.aim;
+    } else if (cmd.dir == "up") {
+        sub.aim -= cmd.val;
+    } else if (cmd.dir == "down") {
+        sub.aim += cmd.val;
+    } else {
+        console.log(`unknown direction: ${cmd.dir}`);
+    }
+});
+
+console.log(``);
+console.log(`final sub position: ${sub.horizontal}, ${sub.depth}`);
+console.log(`puzzle 2 solution: ${(sub.horizontal * sub.depth)}`);
